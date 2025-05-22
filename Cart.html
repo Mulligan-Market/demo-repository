@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Mulligan Market</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header, footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    .checkout-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+
+  <div class="container">
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <h3>Total: $<span id="total-price">0.00</span></h3>
+    <a href="checkout.html"><button class="checkout-button">Proceed to Checkout</button></a>
+  </div>
+
+  <footer>
+    <p>© 2025 Mulligan Market. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const pricing = {
+      "Titleist Pro V1": { "12": 28, "24": 52 },
+      "Callaway Chrome Soft": { "12": 18, "24": 33 },
+      "TaylorMade TP5": { "12": 18, "24": 33 }
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tbody = document.querySelector("#cart-table tbody");
+    const totalPriceElem = document.getElementById("total-price");
+    let total = 0;
+
+    cart.forEach(item => {
+      const price = pricing[item.product][item.quantity];
+      total += price;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.product}</td>
+        <td>${item.quantity}</td>
+        <td>$${price.toFixed(2)}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    totalPriceElem.textContent = total.toFixed(2);
+  </script>
+</body>
+</html>
+
