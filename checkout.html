@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Mulligan Market</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header, footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+
+  <div class="container">
+    <form onsubmit="submitOrder(event)">
+      <h3>Customer Information</h3>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Shipping Address" required />
+      <input type="text" placeholder="City" required />
+      <input type="text" placeholder="State" required />
+      <input type="text" placeholder="Zip Code" required />
+
+      <h3>Payment (placeholder only)</h3>
+      <input type="text" placeholder="Card Number" required />
+      <input type="text" placeholder="MM/YY" required />
+      <input type="text" placeholder="CVV" required />
+
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 Mulligan Market. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function submitOrder(event) {
+      event.preventDefault();
+      alert("Order placed successfully! (Demo only)");
+      localStorage.removeItem("cart");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
+
